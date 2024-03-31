@@ -8,14 +8,14 @@ namespace Memento_Mori.Memento
 {
     class Caretaker
     {
-        private List<Memento> _mementos = new List<Memento>();
+        private List<IMemento> _mementos = new List<IMemento>();
 
-        public void Backup(Memento memento)
+        public void Backup(IMemento memento)
         {
             _mementos.Add(memento);
         }
 
-        public Memento Undo()
+        public IMemento Undo()
         {
             if (_mementos.Count == 0)
                 return null;

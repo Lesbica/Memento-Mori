@@ -20,12 +20,12 @@ namespace Memento_Mori.Memento
             Console.WriteLine("Початковий стан редактора: " + state);
         }
 
-        public Memento Save()
+        public IMemento Save()
         {
-            return new Memento(State, Font, ForeColor);
+            return new ConcreteMemento(State, Font, ForeColor);
         }
 
-        public void Restore(Memento memento)
+        public void Restore(IMemento memento)
         {
             State = memento.State;
             Font = memento.Font;

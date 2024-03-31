@@ -52,7 +52,7 @@ namespace Memento_Mori
             if (memento != null)
             {
                 _originator.Restore(memento);
-                UpdateTextEditor();
+                UpdateTextEditor2();
                 MessageBox.Show("Попередній стан редактора відновлено!");
             }
             else
@@ -67,24 +67,34 @@ namespace Memento_Mori
             MessageBox.Show(history, "Історія змін редактора");
         }
 
-        private void UpdateTextEditor()
+        private void UpdateTextEditor2()
         {
-            // Зберегти поточну позицію курсора
             var selectionStart = txtEditor.SelectionStart;
             var selectionLength = txtEditor.SelectionLength;
 
-            // Зберегти поточний текст
-            var currentText = txtEditor.Text;
+            txtEditor.Clear(); // Очищаємо текстове поле перед оновленням тексту
 
-            // Оновити текст, шрифт та колір
             txtEditor.Text = _originator.State;
             txtEditor.Font = _originator.Font;
             txtEditor.ForeColor = _originator.ForeColor;
 
-            // Відновити позицію курсора
+            txtEditor.Select(selectionStart, selectionLength);
+        }
+
+
+        private void UpdateTextEditor()
+        {
+            var selectionStart = txtEditor.SelectionStart;
+            var selectionLength = txtEditor.SelectionLength;
+
+            var currentText = txtEditor.Text;
+
+            txtEditor.Text = _originator.State;
+            txtEditor.Font = _originator.Font;
+            txtEditor.ForeColor = _originator.ForeColor;
+
             txtEditor.Select(selectionStart, selectionLength);
 
-            // Підтримати текст, який вже був введений користувачем
             if (currentText.Length > _originator.State.Length)
             {
                 txtEditor.Text += currentText.Substring(_originator.State.Length);

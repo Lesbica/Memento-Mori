@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Memento_Mori.Memento
 {
-    class Memento
+    class ConcreteMemento : IMemento
     {
         public string State { get; }
         public Font Font { get; }
         public Color ForeColor { get; }
 
-        public Memento(string state, Font font, Color foreColor)
+        public ConcreteMemento(string state, Font font, Color foreColor)
         {
             State = state;
             Font = font;
